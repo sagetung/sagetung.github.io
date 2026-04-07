@@ -1,0 +1,70 @@
+/* 首頁基礎設定 */
+body.index-page {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* 背景容器 */
+.background-container {
+    width: 100%;
+    height: 100vh;
+    background-image: url('cover page bg.jpg');
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 對話框區域（點擊全區域觸發） */
+.dialogue-overlay {
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 500;
+    cursor: pointer;
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.dialogue-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.dialogue-box {
+    width: 90%;
+    max-width: 1000px;
+    min-height: 140px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px 50px; /* 稍微增加了內距 */
+    backdrop-filter: blur(15px);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.dialogue-name {
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.dialogue-text {
+    color: #ccc;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    letter-spacing: 1.5px;
+}
+
+/* 手機端適配 */
+@media (max-width: 768px) {
+    .background-container { background-size: cover; }
+    .dialogue-box { padding: 25px 30px; min-height: 120px; }
+    .dialogue-text { font-size: 0.95rem; }
+}

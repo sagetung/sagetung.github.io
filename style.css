@@ -1,0 +1,344 @@
+/* =========================================
+   1. 基礎重置與核心設定
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    background-color: #050505; /* 深邃黑，減少純黑 (#000) 的突兀感 */
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 針對「關於我」頁面允許滾動，其餘頁面（如首頁）可視需求禁止 */
+.about-page {
+    overflow-y: auto;
+}
+
+/* =========================================
+   2. 頂端固定導覽 (Top Bar)
+   ========================================= */
+.top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(5, 5, 5, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 25px;
+    z-index: 1000;
+    backdrop-filter: blur(12px); /* 毛玻璃效果 */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.left-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.site-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 5px;
+    color: #fff;
+}
+
+.menu-btn {
+    width: 30px;
+    cursor: pointer;
+}
+
+.menu-btn .bar {
+    width: 25px;
+    height: 1px;
+    background-color: #ffffff;
+    margin: 6px 0;
+}
+
+/* =========================================
+   3. 側邊彈出導覽 (Side Nav)
+   ========================================= */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background-color: #0a0a0a;
+    z-index: 2000;
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 80px 25px;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.8);
+    overflow-y: auto;
+}
+
+.side-nav.active {
+    left: 0;
+}
+
+.side-nav ul {
+    list-style: none;
+}
+
+.side-nav a, .nav-category-title {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.85rem;
+    display: block;
+    padding: 14px 0;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    transition: 0.3s;
+}
+
+.side-nav a:hover, .nav-category-title:hover {
+    color: #fff;
+}
+
+.nav-category-title {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.sub-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background-color: #050505;
+    padding-left: 15px;
+}
+
+.nav-item.active .sub-menu {
+    max-height: 500px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: none;
+    z-index: 1500;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* =========================================
+   4. 個人使用說明書內容區 (ReadMe Content)
+   ========================================= */
+.readme-content {
+    padding: 120px 10% 100px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* 頁面左上方標題 */
+.page-title {
+    color: #fff;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    margin-bottom: 60px;
+    border-left: 2px solid #fff;
+    padding-left: 15px;
+    opacity: 0.4;
+    text-transform: uppercase;
+}
+
+/* 現代感診斷標籤 (低飽和、細邊框) */
+.modern-label {
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    padding: 6px 15px;
+    margin-bottom: 30px;
+    display: inline-block;
+    border-left: 1px solid;
+    font-weight: 400;
+    background: rgba(255, 255, 255, 0.03);
+    text-transform: uppercase;
+}
+
+.label-blue { border-color: #4a9eff; color: #4a9eff; }
+.label-orange { border-color: #d27b2d; color: #d27b2d; }
+.label-gray { border-color: #888; color: #888; }
+.label-red { border-color: #cf5148; color: #cf5148; }
+
+.section-container {
+    margin-bottom: 100px;
+}
+
+/* --- 第一部分：身分概覽 --- */
+.profile-layout {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.profile-image img {
+    width: 260px;
+    filter: grayscale(100%) brightness(0.9);
+    border: 1px solid #1a1a1a;
+    transition: 0.5s;
+}
+
+.profile-image img:hover {
+    filter: grayscale(0%) brightness(1);
+}
+
+.name-display {
+    font-size: 2rem;
+    letter-spacing: 12px;
+    margin-bottom: 15px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.motto-display {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 35px;
+    letter-spacing: 2px;
+    font-style: italic;
+}
+
+.essay-body p {
+    color: #999;
+    font-size: 0.95rem;
+    line-height: 2.2;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+/* --- 第二部分：狀態與病歷網格 --- */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+.block-text p {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 2;
+    margin-bottom: 22px;
+}
+
+.term {
+    color: #ccc;
+    font-weight: 600;
+    margin-right: 8px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #222;
+}
+
+/* --- 第三部分：成就系統卡片 --- */
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.ach-card {
+    padding: 35px;
+    border: 1px solid #111;
+    background: #080808;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ach-card:hover {
+    border-color: #333;
+    background: #0c0c0c;
+    transform: translateY(-5px);
+}
+
+.ach-card h4 {
+    font-size: 0.85rem;
+    color: #bbb;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.ach-card p {
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+/* =========================================
+   5. 手機版響應式優化 (Media Queries)
+   ========================================= */
+@media (max-width: 768px) {
+    .readme-content {
+        padding: 100px 25px 60px;
+    }
+
+    .profile-layout, .grid-2 {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .profile-image {
+        width: 100%;
+        text-align: center;
+    }
+
+    .profile-image img {
+        width: 85%;
+        max-width: 260px;
+    }
+
+    .profile-text {
+        width: 100%;
+    }
+
+    .name-display {
+        font-size: 1.6rem;
+        text-align: center;
+        letter-spacing: 8px;
+        margin-top: 10px;
+    }
+
+    .motto-display {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .essay-body p {
+        font-size: 0.9rem;
+        line-height: 2;
+        text-align: justify;
+    }
+
+    .modern-label {
+        width: 100%;
+        text-align: center;
+    }
+
+    .ach-card {
+        padding: 25px;
+    }
+}
+
+/* =========================================
+   6. 首頁對話框 (通用樣式，若您在首頁使用)
+   ========================================= */
+.dialogue-box {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
