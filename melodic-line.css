@@ -1,0 +1,121 @@
+/* melodic-line.css */
+
+/* 1. 調整標題與引言間距 */
+.page-title {
+    font-size: 2.2rem;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    border-left: 4px solid #ffffff;
+    padding-left: 20px;
+}
+
+.music-intro {
+    color: #888;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin-top: 0;
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+    max-width: 800px;
+}
+
+/* 2. 音樂卡片網格 (1行3個) */
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 強制三欄 */
+    gap: 30px;
+}
+
+.music-card {
+    background: #111111;
+    border: 1px solid #1a1a1a;
+    display: flex;
+    flex-direction: column; /* 改為垂直排列 */
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.music-card:hover {
+    border-color: #444;
+    transform: translateY(-5px); /* 輕微懸浮感 */
+}
+
+/* 封面圖：強制正方形 */
+.music-cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-bottom: 1px solid #1a1a1a;
+    background: #050505;
+}
+
+.music-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 作品資訊區 */
+.music-detail {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.music-tags {
+    margin-bottom: 12px;
+}
+
+.m-tag {
+    color: #444;
+    font-size: 0.7rem;
+    margin-right: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.music-name {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    color: #eee;
+}
+
+.lyrics-quote {
+    color: #666;
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    min-height: 3em; /* 保持對齊 */
+}
+
+/* 3. 播放器美化：極簡深色化 */
+.player-wrapper {
+    margin-top: auto; /* 讓播放器始終置底 */
+}
+
+.player-wrapper audio {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    /* 這裡使用濾鏡讓原生播放器與深色背景融合 */
+    filter: invert(100%) hue-rotate(180deg) brightness(1.5) opacity(0.8);
+}
+
+/* 手機適配：改為 1 欄 */
+@media (max-width: 992px) {
+    .music-grid {
+        grid-template-columns: repeat(2, 1fr); /* 平板 2 欄 */
+    }
+}
+
+@media (max-width: 600px) {
+    .music-grid {
+        grid-template-columns: 1fr; /* 手機 1 欄 */
+    }
+    .page-title {
+        font-size: 1.8rem;
+    }
+}
