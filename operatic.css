@@ -35,6 +35,23 @@ body.about-page {
     left: 0 !important;
 }
 
+/* 預設隱藏所有子選單 */
+.sub-menu {
+    display: none; 
+    padding-left: 20px;
+    list-style: none;
+}
+
+/* 當加上 active 時強制顯示 */
+.sub-menu.active {
+    display: block !important;
+}
+
+/* 讓滑鼠移上去時顯示是可以點擊的狀態 */
+.nav-category-title {
+    cursor: pointer;
+}
+
 /* 遮罩設定 */
 .overlay {
     position: fixed;

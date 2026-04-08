@@ -23,12 +23,22 @@ function toggleMenu() {
 }
 
 function toggleSubMenu(element) {
-    // 切換子選單展開狀態
+    // 1. 找到點擊標題下方的下一個元素 (也就是 <ul>)
     const subMenu = element.nextElementSibling;
-    if (subMenu) {
+    
+    // 2. 檢查這個元素是否存在，且確實是子選單
+    if (subMenu && subMenu.classList.contains('sub-menu')) {
+        // 3. 切換 active 類名
         subMenu.classList.toggle('active');
-        // 同步切換標題的狀態（例如旋轉小箭頭）
+        // 4. 切換標題的展開狀態（如果你有設定小箭頭旋轉的話）
         element.classList.toggle('expanded');
+        
+        // 5. 強制修正：如果 CSS 沒反應，直接用 JS 控制顯示
+        if (subMenu.classList.contains('active')) {
+            subMenu.style.display = "block";
+        } else {
+            subMenu.style.display = "none";
+        }
     }
 }
 
