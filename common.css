@@ -95,6 +95,8 @@ body, html {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #1a1a1a;
+    cursor: pointer;
+    user-select: none;
 }
 
 .sub-menu {

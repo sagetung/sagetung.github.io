@@ -56,19 +56,7 @@ body.about-page {
 
 /* 確保子選單顯示時不會被父層切掉 */
 .nav-item {
-    overflow: visible !important;
-}
-
-.sub-menu {
-    display: none;
-    list-style: none;
-    padding-left: 20px;
-}
-
-/* 強制顯示 active 狀態 */
-.sub-menu.active {
-    display: block !important;
-    visibility: visible !important;
+    overflow: visible;
 }
 
 /* 降低黑色背景框的層級，不要讓它干擾導覽列 */
