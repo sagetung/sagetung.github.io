@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>詠敘 / Operatic | 夏桐笙</title>
+    
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="operatic.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body class="about-page">
+
+    <header class="top-bar">
+        <div class="left-group">
+            <div class="menu-btn" onclick="toggleMenu()">
+                <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+            </div>
+            <a href="index.html" class="site-name">夏桐笙</a>
+        </div>
+    </header>
+
+    <nav class="side-nav" id="sideNav">
+        <ul>
+            <li><a href="index.html">首頁 / Home</a></li>
+            <li><a href="about.html">個人使用說明書 / Manual</a></li>
+            <li class="nav-item">
+                <div class="nav-category-title" onclick="toggleSubMenu(this)">人造物 / Artifacts</div>
+                <ul class="sub-menu">
+                    <li><a href="under-construction.html">文本 / Text</a></li>
+                    <li><a href="under-construction.html">碎語 / Fragments</a></li>
+                    <li><a href="melodic-line.html">旋律線 / Melodic Line</a></li>
+                    <li><a href="under-construction.html">交互 / Interaction</a></li>
+                    <li><a href="under-construction.html">顯像 / Visualization</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <div class="nav-category-title" onclick="toggleSubMenu(this)">外部攝入 / External Intake</div>
+                <ul class="sub-menu">
+                    <li><a href="under-construction.html">墨跡 / Script</a></li>
+                    <li><a href="under-construction.html">顯影 / Cine</a></li>
+                    <li><a href="under-construction.html">聲波 / Acoustic</a></li>
+                    <li><a href="under-construction.html">擬境 / Ludic</a></li>
+                    <li><a href="under-construction.html">逸象 / Manga</a></li>
+                    <li><a href="operatic.html" class="active">詠敘 / Operatic</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="readme-content">
+        <div class="main-content-block">
+            
+            <header class="operatic-header">
+                <div class="header-text-group">
+                    <h1 class="page-title">詠敘 / Operatic</h1>
+                    <p class="music-intro">
+                        「當語言的密度不足以承載情緒時，載體選擇以歌聲強行介入現實。在劇場的密閉空間裡，肉身的共鳴與旋律交織，產生了一場對感官進行高頻轟炸的敘事實驗。」
+                    </p>
+                </div>
+
+                <div class="action-bar">
+                    <button class="gallery-btn" onclick="resetGallery()">GALLERY / 圖鑑</button>
+                    <button class="shuffle-btn" onclick="drawCard()">DRAW / 隨機抽取</button>
+                </div>
+            </header>
+
+            <div class="card-grid" id="cardGrid">
+                
+                <div class="musical-card" onclick="toggleCardFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="hero-image" style="background-image: url('operatic pc/Mozart\ L\'Opera\ Rock\ pc.jpg');"></div>
+                            <div class="card-name">Mozart, L'opéra rock</div>
+                        </div>
+                        <div class="card-back">
+                            <h3 class="back-title">Mozart, L'opéra rock</h3>
+                            <p class="golden-quote">「Vivre à en crever.」</p>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="my-review">
+                                在《Mozart, L'opéra rock》中，莫札特不再只是教科書上的天才，而是一個跨越時代的搖滾巨星與自由靈魂。<br><br>
+                                劇中的他，核心是外放的叛逆與純粹的感官衝擊。他被塑造成一位擁有天才直覺、追求極致當下的青年偶像。<br><br>
+                                他的痛苦往往來自外部世界的枷鎖——貴族、父權、以及薩里耶利的凝視；而他反抗的方式，則是透過音樂與生活，舉行一場場華麗而放縱的慶典。<br><br>
+                                標誌性的《Tatoue-moi》與《Vivre à en crever》，無一不在高歌燃燒生命的享樂哲學。<br><br>
+                                莫札特在此更像是一個文化符號，他的魅力源於那種不可複製的激情。然而，最迷人的或許是他終其一生所熱愛的即興創作——那是我們永遠無法完全捕捉、最完整也最真實的他。<br><br>
+                                正如他所言：「我想賦予生命的，不是什麼革命的理想主義，而是人類情感的痛苦傷痕。」
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <a href="https://youtu.be/OfdnnheqQcw?si=CKkhCMNUgMhsfYaF" target="_blank" class="yt-link-btn" onclick="event.stopPropagation();">
+                                <span class="yt-icon">▶</span>
+                                <span class="yt-text">WATCH ON YOUTUBE</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                                <div class="musical-card" onclick="toggleCardFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="hero-image" style="background-image: url('operatic pc/Chicago\ pc.webp');"></div>
+                            <div class="card-name">Chicago</div>
+                        </div>
+                        <div class="card-back">
+                            <h3 class="back-title">Chicago</h3>
+                            <p class="golden-quote">「It's all a circus, kid. A lot of show-biz.」</p>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="my-review">
+                                1996 年的舞台復排版與電影版的《Chicago》無疑是兩個巔峰。<br><br>
+                                這部改編自 1920 年代真實罪案的劇作，將謀殺案化為媒體炒作的頭條，讓女囚成為報紙追捧的明星。然而，在華麗的爵士舞步下，隱藏著最荒誕的諷刺：唯一真正無辜的女人，因不會操縱媒體而成了唯一被處決的犧牲品。<br><br>
+                                現實往往比戲劇更冷酷。在那個物欲膨脹的時代，資本干預生活，記者操控輿論，律師唯利是圖。新聞不再追求真實，內心不再渴望正義。物欲極度膨脹後的空虛——每個人都承載著新時代獨有的、那份蠢蠢欲動的貪婪。<br><br>
+                                當社會不再追求真實，當人們只為感官刺激而活，那麼在理想家、老實人、野心家與堅守者之間，誰才是規則下的犧牲品？<br><br>
+                                或許，在特定時代的運作下，贏家永遠只屬於那些深諳人心、洞察規則的野心家。<br><br>
+                                「即便雙手沾滿鮮血，只要腳步夠華麗，全城依然為之瘋狂。『Roxie Rocks Chicago！』——這是一首寫給崩壞時代的絕望讚歌。」
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <a href="https://youtube.com/playlist?list=PL8Lpw39GxwbNz-AnYe2PML38l724dmCOI&si=EsjqzNki_gEmDy3K" target="_blank" class="yt-link-btn" onclick="event.stopPropagation();">
+                                <span class="yt-icon">▶</span>
+                                <span class="yt-text">WATCH ON YOUTUBE</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                                                <div class="musical-card" onclick="toggleCardFlip(this)">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="hero-image" style="background-image: url('operatic pc/Cats\ pc.jpg');"></div>
+                            <div class="card-name">Cats</div>
+                        </div>
+                        <div class="card-back">
+                            <h3 class="back-title">Cats</h3>
+                            <p class="golden-quote">「If you find there the meaning of what happiness is, then a new life will begin.」</p>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="my-review">
+                                《Cats》所營造的，是那種獨屬於貓族、隱匿於都市廢墟中的神秘花園。在這個被月光鍍上銀色的特殊夜晚，所有的 Jellicle Cats 齊聚一堂。<br><br>
+                                那不僅是一年一度的舞會，更是一場關於生命重量的角力與呈現。從頑皮的搖滾貓到優雅的劇院貓，形形色色的貓悉數登場，它們不再只是動物的模仿，而是人性百態的縮影。<br><br>
+                                舞台上，貓們輕盈靈動，彷彿月光下的精靈在跳躍嬉戲。每一隻貓都有著獨特的靈魂，它們用舞步和歌聲編織出自己的故事，那裡面有年輕時的狂傲，有功成名就後的唏噓，也有被孤立者的孤寂與哀傷。而這一切，最終都交匯在睿智仁慈的老領袖 Old Deuteronomy 面前。<br><br>
+                                我們往往在尋找生命的意義，而《Cats》給出的答案無比純粹：生命的意義在於經歷。<br><br>
+                                只有經歷過生活的酸甜苦辣，才可能真正懂得珍惜。舞台上那些或襤褸或華麗的皮毛，承載的是時間的刻痕。正如那位曾經風光無限、如今落魄憔悴的魅力貓 Grizabella，她在那首動人心魄的《Memory》中，用破碎的聲線乞求一個觸碰。那是經歷了繁華後的凋零，也是在凋零中生出的、對生命最赤裸的渴望。<br><br>
+                                唯有懂得珍惜生命的人，才可能真正地熱愛生命，而這份「懂得」，必須經由歲月的磨練與洗禮。
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <a href="https://youtu.be/GbpP3Sxp-1U?si=rmSxycEpC1GNGTU6" target="_blank" class="yt-link-btn" onclick="event.stopPropagation();">
+                                <span class="yt-icon">▶</span>
+                                <span class="yt-text">WATCH ON YOUTUBE</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                </div>
+        </div>
+    </main>
+
+    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <script src="operatic.js"></script>
+    <script>
+        // 防止點擊 YouTube 按鈕時觸發卡牌翻轉
+        function toggleCardFlip(card) {
+            card.classList.toggle('is-flipped');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+/* ==========================================================================
+   1. 基礎頁面設定 (繼承 Manual 頁面風格)
+   ========================================================================== */
+body.about-page {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    background-image: url('operatic\ pc/operatic cover.jpg'); 
+    background-size: cover;
+    background-position: center bottom;
+    background-attachment: fixed;
+    color: #fff;
+    font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    overflow-x: hidden; /* 防止側邊欄滑動造成橫向捲軸 */
+}
+
+/* ==========================================================================
+   2. 導覽系統修正 (解決選單不顯示問題)
+   ========================================================================== */
+.side-nav {
+    position: fixed;
+    top: 0;
+    left: -300px; /* 寬度 */
+    width: 300px;
+    height: 100vh;
+    background: #0a0a0a;
+    z-index: 3000; /* 確保在所有層級之上 */
+    transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border-right: 1px solid #333;
+    padding-top: 80px;
+}
+
+/* 關鍵：選單開啟狀態 */
+.side-nav.open {
+    left: 0 !important;
+}
+
+/* 遮罩設定 */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 2500;
+    display: none; /* 預設隱藏 */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* ==========================================================================
+   3. 主要內容區域 (與 Manual 頁面格式同步)
+   ========================================================================== */
+.readme-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 20px 80px 20px;
+}
+
+.main-content-block {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    padding: 60px 50px;
+    border-radius: 2px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* Header 佈局：標題左、按鈕右 */
+.operatic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.header-text-group { flex: 1; }
+
+.page-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin: 0 0 25px 0;
+    letter-spacing: 2px;
+}
+
+.music-intro {
+    color: #aaa;
+    line-height: 1.8;
+    font-size: 1rem;
+    max-width: 800px;
+    text-align: justify;
+}
+
+/* ==========================================================================
+   4. 功能按鈕 (右側長方形)
+   ========================================================================== */
+.action-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 180px;
+}
+
+.action-bar button {
+    border: none;
+    padding: 15px 30px;
+    font-weight: 900;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+}
+
+.shuffle-btn { background: #fff; color: #000; box-shadow: 5px 5px 0px #ff0000; }
+.shuffle-btn:hover { transform: translate(3px, 3px); box-shadow: 0px 0px 0px #ff0000; background: #ff0000; color: #fff; }
+
+.gallery-btn { background: #111; color: #fff; border: 1px solid #333; box-shadow: 5px 5px 0px #555; }
+.gallery-btn:hover { transform: translate(3px, 3px); box-shadow: 0px 0px 0px #555; background: #222; }
+
+/* ==========================================================================
+   5. 卡牌網格 (1 行 4 張)
+   ========================================================================== */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    perspective: 2000px;
+}
+
+.musical-card { aspect-ratio: 1 / 1.55; cursor: pointer; }
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.musical-card.is-flipped .card-inner { transform: rotateY(180deg); }
+
+/* ==========================================================================
+   6. 卡牌背面詳情與虛線分段
+   ========================================================================== */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 2px;
+}
+
+.card-front { background: #111; border: 1px solid #222; display: flex; flex-direction: column; }
+.hero-image { flex: 1; background-size: cover; background-position: center; filter: grayscale(100%); transition: 0.5s; }
+.musical-card:hover .hero-image { filter: grayscale(0%); }
+.card-name { height: 50px; background: #fff; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.8rem; }
+
+.card-back {
+    transform: rotateY(180deg);
+    background: #080808;
+    border: 2px solid #ff0000;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.back-title { color: #fff; font-size: 1.2rem; margin: 0 0 10px 0; border-bottom: 2px solid #ff0000; padding-bottom: 5px; }
+.golden-quote { font-family: 'Noto Serif TC', serif; font-style: italic; color: #ddd; font-size: 0.85rem; margin: 5px 0; }
+
+/* 虛線分隔 */
+.divider { border-top: 1px dashed #444; margin: 12px 0; }
+
+/* 感想文字分段 */
+.my-review { color: #888; font-size: 0.8rem; line-height: 1.6; flex: 1; overflow-y: auto; }
+.my-review p { margin-bottom: 1.2em; } /* 感想段落間距 */
+.my-review p:last-child { margin-bottom: 0; }
+
+/* YouTube 按鈕樣式 */
+.yt-link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    gap: 8px;
+    border: 1px solid #333;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+.yt-link-btn:hover { background: #ff0000; border-color: #ff0000; }
+.yt-icon { color: #ff0000; font-size: 1rem; }
+.yt-link-btn:hover .yt-icon { color: #fff; }
+.yt-text { font-size: 0.7rem; font-weight: 900; }
+
+/* 抽取邏輯類 */
+.musical-card.hidden { display: none; }
+
+/* ==========================================================================
+   7. 響應式適配
+   ========================================================================== */
+@media (max-width: 900px) {
+    .operatic-header { flex-direction: column; align-items: flex-start; }
+    .action-bar { flex-direction: row; width: 100%; }
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
