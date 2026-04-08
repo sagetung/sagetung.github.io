@@ -17,59 +17,64 @@ body.about-page {
 /* ==========================================================================
    2. 導覽系統修正 (解決選單不顯示問題)
    ========================================================================== */
+/* ==========================================================================
+   側邊欄與子目錄：終極修正版
+   ========================================================================== */
+
+/* 1. 提升側邊欄層級，確保它不在背景模糊層的渲染範圍內 */
 .side-nav {
     position: fixed;
-    top: 0;
-    left: -300px; /* 寬度 */
+    z-index: 99999 !important; /* 極高層級 */
+    left: -300px;
     width: 300px;
     height: 100vh;
-    background: #0a0a0a;
-    z-index: 3000; /* 確保在所有層級之上 */
+    background: #0a0a0a !important; /* 使用實色背景，避免受主內容模糊影響 */
     transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    border-right: 1px solid #333;
-    padding-top: 80px;
+    overflow-y: auto !important; /* 允許滾動但不要隱藏溢出 */
+    overflow-x: visible !important;
 }
 
-/* 關鍵：選單開啟狀態 */
 .side-nav.open {
     left: 0 !important;
 }
 
-/* 預設隱藏所有子選單 */
-.sub-menu {
-    display: none; 
-    padding-left: 20px;
-    list-style: none;
+/* 2. 確保 nav-item 容器不會切斷內容 */
+.nav-item {
+    width: 100%;
+    overflow: visible !important; 
+    position: relative;
 }
 
-/* 當加上 active 時強制顯示 */
+/* 3. 子目錄顯示邏輯 (關鍵修正) */
+/* 確保側邊欄本身不會被背景框擋住點擊 */
+.side-nav {
+    position: fixed;
+    z-index: 999999 !important; /* 給予極高的層級，確保高過透明背景框 */
+    pointer-events: auto !important; /* 強制接收點擊事件 */
+    background: #0a0a0a; /* 不要用透明，用實色避開模糊衝突 */
+}
+
+/* 確保子選單顯示時不會被父層切掉 */
+.nav-item {
+    overflow: visible !important;
+}
+
+.sub-menu {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+}
+
+/* 強制顯示 active 狀態 */
 .sub-menu.active {
     display: block !important;
+    visibility: visible !important;
 }
 
-/* 讓滑鼠移上去時顯示是可以點擊的狀態 */
-.nav-category-title {
-    cursor: pointer;
-}
-
-/* 遮罩設定 */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
-    z-index: 2500;
-    display: none; /* 預設隱藏 */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.overlay.active {
-    display: block;
-    opacity: 1;
+/* 降低黑色背景框的層級，不要讓它干擾導覽列 */
+.main-content-block {
+    position: relative;
+    z-index: 1 !important; 
 }
 
 /* ==========================================================================
