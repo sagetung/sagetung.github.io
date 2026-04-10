@@ -1,0 +1,161 @@
+/* ==========================================================================
+   meditation.css - 繼承自 melodic-line.css 的結構
+   主題：修身養性 / 熵 (Entropy)
+   ========================================================================== */
+
+/* 1. 頁面基礎：繼承 melodic-line 的深邃感 */
+.about-page.script-page {
+    background-color: #050505;
+    background-image: radial-gradient(circle at center, #111 0%, #050505 100%);
+}
+
+/* 2. Header 區域：與旋律線完全對齊 */
+.operatic-header {
+    margin-bottom: 40px;
+    padding-top: 20px;
+}
+
+.operatic-header .page-title {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 900;
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+    /* 這裡加入一點點紅色的陰影，暗示「熵」的不穩定 */
+    text-shadow: 2px 2px 10px rgba(153, 0, 0, 0.2);
+}
+
+.music-intro {
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.8;
+    border-left: 1px solid #990000; /* 使用熵的標誌紅 */
+    padding-left: 20px;
+    letter-spacing: 1px;
+}
+
+/* 3. 分隔線：延續 script.css 的墨跡感 */
+.divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(153, 0, 0, 0.5), transparent);
+    margin: 40px 0;
+}
+
+/* 4. 聊天容器：模仿 melodic-line 的播放器/列表區塊樣式 */
+.chat-ui-container {
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* 聊天窗口：內部的訊息流動 */
+#chat-window {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+/* 5. 訊息美學：結合 Noto Serif TC 的文學感 */
+.message {
+    margin-bottom: 35px;
+    line-height: 2;
+    max-width: 85%;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    position: relative;
+}
+
+.bot-msg {
+    color: #990000;
+    align-self: flex-start;
+    border-left: 2px solid #990000;
+    padding-left: 25px;
+    transition: all 0.2s;
+}
+
+.user-msg {
+    color: #777;
+    align-self: flex-end;
+    text-align: right;
+    border-right: 1px solid #333;
+    padding-right: 25px;
+}
+
+/* 6. 輸入區域：模仿網頁底部固定欄位的質感 */
+.input-wrapper {
+    padding: 30px 40px;
+    background: rgba(10, 10, 10, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+}
+
+#user-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #333;
+    color: #fff;
+    padding: 10px 0;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.4s ease;
+}
+
+#user-input:focus {
+    border-color: #990000;
+}
+
+#send-btn {
+    background: transparent;
+    color: #990000;
+    border: 1px solid #990000;
+    padding: 8px 30px;
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#send-btn:hover {
+    background: #990000;
+    color: #000;
+    box-shadow: 0 0 20px rgba(153, 0, 0, 0.4);
+}
+
+/* 7. 特殊效果：熵的震顫 (繼承自你的原版但更精緻) */
+@keyframes subtle-vibrate {
+    0% { transform: translate(0,0); }
+    20% { transform: translate(-0.5px, 0.5px); }
+    40% { transform: translate(-0.5px, -0.5px) scale(1.001); filter: contrast(1.1); }
+    60% { transform: translate(0.5px, 0.5px); }
+    80% { transform: translate(0.5px, -0.5px); }
+    100% { transform: translate(0,0); }
+}
+
+.bot-msg.talking {
+    animation: subtle-vibrate 0.15s infinite;
+}
+
+/* 狀態列：與 melodic-line 的輔助文字一致 */
+#status-bar {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.75rem;
+    color: #444;
+    padding: 10px 40px;
+    height: 30px;
+    letter-spacing: 2px;
+}
