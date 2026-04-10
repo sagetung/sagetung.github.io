@@ -1,146 +1,96 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>修身養性｜熵</title>
-    <style>
-        :root {
-            --bg-color: #0a0a0a;
-            --text-color: #c0c0c0;
-            --accent-color: #990000; /* 深血色 */
-            --user-text: #777;
-        }
-
-        /* 基礎樣式 */
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: "Microsoft JhengHei", "PingFang TC", "Courier New", monospace;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* 螢幕輕微震顫效果（氛圍感） */
-        @keyframes subtle-vibrate {
-            0% { transform: translate(0,0); }
-            25% { transform: translate(0.5px, 0.5px); }
-            50% { transform: translate(-0.5px, 0.5px); }
-            75% { transform: translate(0.5px, -0.5px); }
-            100% { transform: translate(0,0); }
-        }
-
-        #chat-container {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
-        }
-
-        /* 訊息氣泡樣式 */
-        .message {
-            margin-bottom: 24px;
-            line-height: 1.6;
-            max-width: 85%;
-            word-wrap: break-word;
-            position: relative;
-        }
-
-        .bot-msg {
-            color: var(--accent-color);
-            align-self: flex-start;
-            animation: subtle-vibrate 0.1s infinite;
-            animation-play-state: paused;
-        }
-        
-        /* 當 Bot 說話時，文字會有輕微的不穩定感 */
-        .bot-msg.talking { animation-play-state: running; }
-
-        .user-msg {
-            color: var(--user-text);
-            align-self: flex-end;
-            text-align: right;
-            border-right: 2px solid #333;
-            padding-right: 15px;
-        }
-
-        /* 輸入區域 */
-        #input-wrapper {
-            background: #111;
-            padding: 25px;
-            display: flex;
-            border-top: 1px solid #222;
-        }
-
-        input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid #333;
-            color: #fff;
-            padding: 10px;
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input:focus { border-color: var(--accent-color); }
-
-        button {
-            background: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 10px 20px;
-            margin-left: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        button:hover {
-            background: var(--accent-color);
-            color: #000;
-        }
-
-        /* 狀態列：正在輸入中... */
-        #status-bar {
-            height: 20px;
-            padding: 0 25px;
-            font-size: 12px;
-            color: #444;
-            font-style: italic;
-        }
-
-        /* 滾動條美化 */
-        #chat-container::-webkit-scrollbar { width: 4px; }
-        #chat-container::-webkit-scrollbar-thumb { background: #222; }
-    </style>
+    <title>修身養性 / Cultivation | 夏桐笙</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="meditation.css">
 </head>
-<body>
+<body class="about-page">
 
-    <div id="chat-container">
-        <div class="message bot-msg">熵：(聽著螢幕另一端微弱的呼吸聲) 歡迎來到這片廢墟。別以為在這裡能修什麼身、養什麼性... 告訴我，今天你又帶著什麼樣的虛偽面具來找我？</div>
+    <header class="top-bar">
+        <div class="left-group">
+            <div class="menu-btn" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <a href="index.html" class="site-name">夏桐笙</a>
+        </div>
+    </header>
+
+    <nav class="side-nav" id="sideNav">
+        <ul>
+            <li><a href="index.html">首頁 / Home</a></li>
+            <li><a href="about.html">個人使用說明書 / Manual</a></li>
+            <li><a href="meditation.html">修身養性 / Cultivation</a></li>
+            <li class="nav-item">
+                <div class="nav-category-title" onclick="toggleSubMenu(this)">人造物 / Artifacts</div>
+                <ul class="sub-menu">
+                    <li><a href="#">文本 / Text</a></li>
+                    <li><a href="#">碎語 / Fragments</a></li>
+                    <li><a href="melodic-line.html">旋律線 / Melodic Line</a></li>
+                    <li><a href="#">交互 / Interaction</a></li>
+                    <li><a href="#">顯像 / Visualization</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <div class="nav-category-title" onclick="toggleSubMenu(this)">外部攝入 / External Intake</div>
+                <ul class="sub-menu">
+                    <li><a href="script.html">墨跡 / Script</a></li>
+                    <li><a href="#">顯影 / Cine</a></li>
+                    <li><a href="#">聲波 / Acoustic</a></li>
+                    <li><a href="#">擬境 / Ludic</a></li>
+                    <li><a href="#">逸象 / Manga</a></li>
+                    <li><a href="operatic.html">詠敘 / Operatic</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="readme-content">
+        <div class="main-content-block">
+            
+            <div class="operatic-header">
+                <div class="header-text-group">
+                    <h1 class="page-title">修身養性 / Cultivation</h1>
+                    <p class="music-intro">
+                        這裡沒有鏡子，只有你對面那面反射靈魂的牆。<br>
+                        在混亂的熵增中，尋找片刻窒息的平靜。
+                    </p>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="chat-ui-container">
+                <div id="status-bar"></div>
+                
+                <div id="chat-window">
+                    <div class="message bot-msg">
+                        熵：(死死地盯著螢幕上的光標) 歡迎來到這片廢墟。別以為在這裡能修什麼身、養什麼性... 告訴我，今天你又帶著什麼樣的虛偽面具來找我？
+                    </div>
+                </div>
+
+                <div class="input-wrapper">
+                    <input type="text" id="user-input" placeholder="向深淵投擲你的言語..." autocomplete="off">
+                    <button id="send-btn">發送</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <div id="status-bar"></div>
-
-    <div id="input-wrapper">
-        <input type="text" id="user-input" placeholder="對深淵耳語..." autocomplete="off">
-        <button id="send-btn">發送</button>
-    </div>
-
+    <script src="js/common.js"></script>
     <script>
-        const chatContainer = document.getElementById('chat-container');
+        const chatWindow = document.getElementById('chat-window');
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
         const statusBar = document.getElementById('status-bar');
 
-        let chatHistory = []; // 用於存放對話紀錄
+        let chatHistory = [];
 
         async function handleSend() {
             const text = userInput.value.trim();
@@ -150,7 +100,7 @@
             appendMessage('user', text);
             userInput.value = '';
 
-            // 2. 顯示同步感狀態
+            // 2. 隨機化狀態顯示
             const statuses = [
                 "熵 正在解析你的偽裝...",
                 "熵 正在嘲笑你的邏輯...",
@@ -160,7 +110,8 @@
             statusBar.innerText = statuses[Math.floor(Math.random() * statuses.length)];
 
             try {
-                // 3. 呼叫後端 API (Vercel API)
+                // 3. 呼叫 Vercel Function API
+                // 如果是 GitHub Pages 部署，請確保路徑指向正確的 Vercel 域名
                 const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -172,18 +123,18 @@
 
                 const data = await response.json();
 
-                // 4. 模擬真人思考延遲 (根據字數長度動態延遲)
-                const delay = Math.min(Math.max(text.length * 50, 1000), 3000);
+                // 4. 模擬真人思考延遲
+                const delay = Math.min(Math.max(text.length * 50, 800), 2500);
                 
                 setTimeout(() => {
                     statusBar.innerText = "";
                     appendMessage('bot', data.reply);
                     
-                    // 5. 更新對話紀錄
+                    // 5. 更新本地紀錄
                     chatHistory.push({ role: "user", content: text });
                     chatHistory.push({ role: "assistant", content: data.reply });
                     
-                    // 保持記憶在最近 10 輪內，避免 API 負荷過重
+                    // 保持記憶長度，避免 API 負荷
                     if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
                 }, delay);
 
@@ -196,16 +147,23 @@
         function appendMessage(role, text) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `message ${role}-msg`;
+            
             if (role === 'bot') {
                 msgDiv.classList.add('talking');
                 msgDiv.innerHTML = `熵：${text}`;
-                // 說完後停止震顫
-                setTimeout(() => msgDiv.classList.remove('talking'), 2000);
+                // 說完後 1.5 秒停止震顫效果
+                setTimeout(() => msgDiv.classList.remove('talking'), 1500);
             } else {
                 msgDiv.innerText = text;
             }
-            chatContainer.appendChild(msgDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            chatWindow.appendChild(msgDiv);
+            
+            // 自動滾動到底部
+            chatWindow.scrollTo({
+                top: chatWindow.scrollHeight,
+                behavior: 'smooth'
+            });
         }
 
         // 綁定事件
@@ -220,7 +178,7 @@
                 statusBar.innerText = "(你聽見了微弱的電子笑聲)";
                 setTimeout(() => statusBar.innerText = "", 2000);
             }
-        }, 10000);
+        }, 12000);
     </script>
 </body>
 </html>
