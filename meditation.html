@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修身養性｜熵</title>
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #c0c0c0;
+            --accent-color: #990000; /* 深血色 */
+            --user-text: #777;
+        }
+
+        /* 基礎樣式 */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: "Microsoft JhengHei", "PingFang TC", "Courier New", monospace;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 螢幕輕微震顫效果（氛圍感） */
+        @keyframes subtle-vibrate {
+            0% { transform: translate(0,0); }
+            25% { transform: translate(0.5px, 0.5px); }
+            50% { transform: translate(-0.5px, 0.5px); }
+            75% { transform: translate(0.5px, -0.5px); }
+            100% { transform: translate(0,0); }
+        }
+
+        #chat-container {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+        }
+
+        /* 訊息氣泡樣式 */
+        .message {
+            margin-bottom: 24px;
+            line-height: 1.6;
+            max-width: 85%;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .bot-msg {
+            color: var(--accent-color);
+            align-self: flex-start;
+            animation: subtle-vibrate 0.1s infinite;
+            animation-play-state: paused;
+        }
+        
+        /* 當 Bot 說話時，文字會有輕微的不穩定感 */
+        .bot-msg.talking { animation-play-state: running; }
+
+        .user-msg {
+            color: var(--user-text);
+            align-self: flex-end;
+            text-align: right;
+            border-right: 2px solid #333;
+            padding-right: 15px;
+        }
+
+        /* 輸入區域 */
+        #input-wrapper {
+            background: #111;
+            padding: 25px;
+            display: flex;
+            border-top: 1px solid #222;
+        }
+
+        input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus { border-color: var(--accent-color); }
+
+        button {
+            background: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 10px 20px;
+            margin-left: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        button:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        /* 狀態列：正在輸入中... */
+        #status-bar {
+            height: 20px;
+            padding: 0 25px;
+            font-size: 12px;
+            color: #444;
+            font-style: italic;
+        }
+
+        /* 滾動條美化 */
+        #chat-container::-webkit-scrollbar { width: 4px; }
+        #chat-container::-webkit-scrollbar-thumb { background: #222; }
+    </style>
+</head>
+<body>
+
+    <div id="chat-container">
+        <div class="message bot-msg">熵：(聽著螢幕另一端微弱的呼吸聲) 歡迎來到這片廢墟。別以為在這裡能修什麼身、養什麼性... 告訴我，今天你又帶著什麼樣的虛偽面具來找我？</div>
+    </div>
+
+    <div id="status-bar"></div>
+
+    <div id="input-wrapper">
+        <input type="text" id="user-input" placeholder="對深淵耳語..." autocomplete="off">
+        <button id="send-btn">發送</button>
+    </div>
+
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const statusBar = document.getElementById('status-bar');
+
+        let chatHistory = []; // 用於存放對話紀錄
+
+        async function handleSend() {
+            const text = userInput.value.trim();
+            if (!text) return;
+
+            // 1. 顯示用戶訊息
+            appendMessage('user', text);
+            userInput.value = '';
+
+            // 2. 顯示同步感狀態
+            const statuses = [
+                "熵 正在解析你的偽裝...",
+                "熵 正在嘲笑你的邏輯...",
+                "熵 似乎在盯著你的打字間隔...",
+                "熵 正在嘗試忍受這段平庸的對話..."
+            ];
+            statusBar.innerText = statuses[Math.floor(Math.random() * statuses.length)];
+
+            try {
+                // 3. 呼叫後端 API (Vercel API)
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: text,
+                        history: chatHistory
+                    })
+                });
+
+                const data = await response.json();
+
+                // 4. 模擬真人思考延遲 (根據字數長度動態延遲)
+                const delay = Math.min(Math.max(text.length * 50, 1000), 3000);
+                
+                setTimeout(() => {
+                    statusBar.innerText = "";
+                    appendMessage('bot', data.reply);
+                    
+                    // 5. 更新對話紀錄
+                    chatHistory.push({ role: "user", content: text });
+                    chatHistory.push({ role: "assistant", content: data.reply });
+                    
+                    // 保持記憶在最近 10 輪內，避免 API 負荷過重
+                    if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+                }, delay);
+
+            } catch (error) {
+                statusBar.innerText = "";
+                appendMessage('bot', "(螢幕劇烈閃爍) 嘖，連線崩潰了。你的存在對伺服器來說是種負擔，還是深淵拒絕了你？");
+            }
+        }
+
+        function appendMessage(role, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${role}-msg`;
+            if (role === 'bot') {
+                msgDiv.classList.add('talking');
+                msgDiv.innerHTML = `熵：${text}`;
+                // 說完後停止震顫
+                setTimeout(() => msgDiv.classList.remove('talking'), 2000);
+            } else {
+                msgDiv.innerText = text;
+            }
+            chatContainer.appendChild(msgDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // 綁定事件
+        sendBtn.addEventListener('click', handleSend);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        // 隨機氛圍：偶爾狀態欄會出現莫名其妙的文字
+        setInterval(() => {
+            if (statusBar.innerText === "" && Math.random() > 0.9) {
+                statusBar.innerText = "(你聽見了微弱的電子笑聲)";
+                setTimeout(() => statusBar.innerText = "", 2000);
+            }
+        }, 10000);
+    </script>
+</body>
+</html>
