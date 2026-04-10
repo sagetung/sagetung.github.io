@@ -83,7 +83,21 @@
         </div>
     </div>
 
-    <script src="js/common.js"></script>
+    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <script>
+        function toggleMenu() {
+            const sideNav = document.getElementById('sideNav');
+            const overlay = document.getElementById('menuOverlay');
+            if (sideNav && overlay) {
+                sideNav.classList.toggle('active');
+                overlay.classList.toggle('active');
+            }
+        }
+        function toggleSubMenu(element) {
+            element.parentElement.classList.toggle('active');
+        }
+    </script>
     <script>
         const chatWindow = document.getElementById('chat-window');
         const userInput = document.getElementById('user-input');
