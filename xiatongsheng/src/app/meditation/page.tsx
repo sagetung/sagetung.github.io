@@ -1,7 +1,7 @@
 import React from 'react';
-import commonStyles from '../styles/common.module.css';
-import aboutStyles from '../styles/about.module.css';
-import meditationStyles from '../styles/meditation.module.css';
+import commonStyles from '../../styles/common.module.css';
+import aboutStyles from '../../styles/about.module.css';
+import meditationStyles from '../../styles/meditation.module.css';
 
 export default function Meditation() {
     return (
