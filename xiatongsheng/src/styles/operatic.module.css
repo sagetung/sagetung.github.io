@@ -1,11 +1,11 @@
 /* ==========================================================================
    1. 基礎頁面設定 (繼承 Manual 頁面風格)
    ========================================================================== */
-body.about-page {
+.about-page {
     margin: 0;
     padding: 0;
     background-color: #000;
-    background-image: url('operatic\ pc/operatic cover.jpg'); 
+    background-image: url('/operatic pc/operatic cover.jpg');
     background-size: cover;
     background-position: center bottom;
     background-attachment: fixed;
