@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旋律線 / Melodic Line | 夏桐笙</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="melodic-line.css">
+</head>
+<body class="about-page">
+
+    <header class="top-bar">
+        <div class="left-group">
+            <div class="menu-btn" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <a href="index.html" class="site-name">夏桐笙</a>
+        </div>
+    </header>
+
+    <nav class="side-nav" id="sideNav">
+        <ul>
+            <li><a href="index.html">首頁 / Home</a></li>
+            <li><a href="about.html">個人使用說明書 / Manual</a></li>
+            <li><a href="meditation.html">修身養性 / Cultivation</a></li>
+            <li class="nav-item">
+                <div class="nav-category-title" onclick="toggleSubMenu(this)">人造物 / Artifacts</div>
+                <ul class="sub-menu">
+                    <li><a href="#">文本 / Text</a></li>
+                    <li><a href="#">碎語 / Fragments</a></li>
+                    <li><a href="melodic-line.html">旋律線 / Melodic Line</a></li>
+                    <li><a href="#">交互 / Interaction</a></li>
+                    <li><a href="#">顯像 / Visualization</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <div class="nav-category-title" onclick="toggleSubMenu(this)">外部攝入 / External Intake</div>
+                <ul class="sub-menu">
+                    <li><a href="script.html">墨跡 / Script</a></li>
+                    <li><a href="#">顯影 / Cine</a></li>
+                    <li><a href="#">聲波 / Acoustic</a></li>
+                    <li><a href="#">擬境 / Ludic</a></li>
+                    <li><a href="#">逸象 / Manga</a></li>
+                    <li><a href="operatic.html">詠敘 / Operatic</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="readme-content">
+        <header class="music-header">
+            <h1 class="page-title">旋律線 / Melodic Line</h1>
+            <p class="music-intro">
+                「空氣的震動，以及對寂靜的抵抗。我不試圖傳達什麼宏大的敘事，只想在嘈雜的世界中，勾勒出幾條屬於自己的、低頻的線條。」
+            </p>
+        </header>
+
+        <div class="music-grid">
+            
+            <div class="music-card">
+                <div class="music-cover">
+                    <img src="melodic-line pc/Escape from a Dream pc.jpg" alt="Song Cover 01">
+                </div>
+                <div class="music-detail">
+                    <div class="music-tags">
+                        <span class="m-tag">#Gothic</span>
+                        <span class="m-tag">#Dark Pop</span>
+                    </div>
+                    <h3 class="music-name">Escape from a Dream</h3>
+                    <p class="lyrics-quote">
+                        「The madman is also a beggar of love.<br>
+                        You, placed on a pedestal,<br>
+                        And my shattered faith.」
+                    </p>
+                    <div class="player-wrapper">
+                        <audio controls>
+                            <source src="melodic-line music/Escape from a Dream.mp3" type="audio/mpeg">
+                            您的瀏覽器不支援播放器。
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <div class="music-card">
+                <div class="music-cover">
+                    <img src="melodic-line pc/The Obsession with Death pc.webp" alt="Song Cover 02">
+                </div>
+                <div class="music-detail">
+                    <div class="music-tags">
+                        <span class="m-tag">#Alternative Rock</span>
+                    </div>
+                    <h3 class="music-name">The Obsession with Death</h3>
+                    <p class="lyrics-quote">
+                        「Bananas as the moon.<br>
+                        Sacrificing anxiety and unrest.<br>
+                        The sweet rain of freedom has never fallen.」
+                    </p>
+                    <div class="player-wrapper">
+                        <audio controls>
+                            <source src="melodic-line music/The Obsession with Death.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+            <div class="music-card">
+                <div class="music-cover">
+                    <img src="melodic-line pc/孤独な響きpc.jpg" alt="Coming Soon">
+                </div>
+                <div class="music-detail">
+                    <div class="music-tags">
+                        <span class="m-tag">#Ballad</span>
+                        <span class="m-tag">#Soul</span>
+                    </div>
+                    <h3 class="music-name">孤独な響き</h3>
+                    <p class="lyrics-quote">「透明な魂は水の中に消え、<br>
+                        一滴の雨水は思い出と影を混ぜて舞い踊る。」</p>
+                    <div class="player-wrapper">
+                        <audio controls>
+                            <source src="melodic-line music/孤独な響き.mp3">
+                        </audio>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('sideNav').classList.toggle('active');
+            document.getElementById('menuOverlay').classList.toggle('active');
+        }
+        function toggleSubMenu(element) {
+            element.parentElement.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
